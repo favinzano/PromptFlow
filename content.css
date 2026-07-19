@@ -7,8 +7,38 @@
   bottom: 96px;
   z-index: 2147483000;
   display: flex;
-  gap: 8px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
   font-family: 'Geist', system-ui, -apple-system, sans-serif;
+}
+
+#promptflow-fab .pf-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background-color: #0d1b2a;
+  color: #f4f1eb;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  box-shadow: 0 2px 8px rgba(13, 27, 42, 0.28);
+}
+#promptflow-fab .pf-brand .pf-logo,
+#promptflow-fab .pf-brand .pf-logo svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+#promptflow-fab .pf-accent {
+  color: #b87333;
+}
+
+#promptflow-fab .pf-actions {
+  display: flex;
+  gap: 8px;
 }
 
 #promptflow-fab .pf-btn {

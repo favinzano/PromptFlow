@@ -42,7 +42,9 @@ async function handleEnhance(text) {
     return fail(ERR.NO_PROVIDER, 'Proveedor no válido. Revisa Ajustes.');
   }
 
-  const model = settings.model || provider.defaultModel;
+  // Si el modelo guardado ya no es válido para el proveedor (p. ej. uno retirado),
+  // caemos al modelo por defecto en vez de fallar con 404.
+  const model = provider.models.includes(settings.model) ? settings.model : provider.defaultModel;
   try {
     const { text: enhanced } = await provider.enhance(input, { apiKey: settings.apiKey, model });
     return { success: true, text: enhanced };

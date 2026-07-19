@@ -6,7 +6,8 @@ import { ERR } from '../lib/messages.js';
 export const id = 'gemini';
 export const label = 'Google Gemini · gratis';
 export const defaultModel = 'gemini-2.0-flash';
-export const models = ['gemini-2.0-flash', 'gemini-1.5-flash'];
+// flash-lite tiene límites de uso más altos (útil si aparece 429 en el free tier).
+export const models = ['gemini-2.0-flash', 'gemini-2.0-flash-lite'];
 export const keyHint = {
   text: 'Crea una API key gratis en aistudio.google.com/apikey',
   url: 'https://aistudio.google.com/apikey'

@@ -23,9 +23,31 @@
   let currentPrompts = [];
   let onPickCb = null;
 
+  // Isotipo "La Incisión" (Felipe Avinzano), en negativo para el chip oscuro.
+  const LOGO_SVG =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" aria-hidden="true">' +
+    '<rect x="105" y="120" width="160" height="160" fill="#F4F1EB" transform="rotate(-4 185 200)"/>' +
+    '<rect x="135" y="120" width="160" height="160" fill="none" stroke="#F4F1EB" stroke-width="12" transform="rotate(4 215 200)"/>' +
+    '</svg>';
+
   function buildFab(handlers) {
     root = document.createElement('div');
     root.id = 'promptflow-fab';
+
+    // Etiqueta de marca para que se identifique claramente como PromptFlow.
+    const brand = document.createElement('div');
+    brand.className = 'pf-brand';
+    const logo = document.createElement('span');
+    logo.className = 'pf-logo';
+    logo.innerHTML = LOGO_SVG; // SVG estático de autor (sin datos de usuario)
+    const word = document.createElement('span');
+    word.className = 'pf-wordmark';
+    word.innerHTML = 'Prompt<span class="pf-accent">Flow</span>';
+    brand.appendChild(logo);
+    brand.appendChild(word);
+
+    const actions = document.createElement('div');
+    actions.className = 'pf-actions';
 
     enhanceBtn = document.createElement('button');
     enhanceBtn.id = 'promptflow-enhance';
@@ -45,8 +67,11 @@
       handlers.onLibrary();
     });
 
-    root.appendChild(enhanceBtn);
-    root.appendChild(libBtn);
+    actions.appendChild(enhanceBtn);
+    actions.appendChild(libBtn);
+
+    root.appendChild(brand);
+    root.appendChild(actions);
     document.body.appendChild(root);
   }
 
