@@ -42,7 +42,8 @@
     logo.innerHTML = LOGO_SVG; // SVG estático de autor (sin datos de usuario)
     const word = document.createElement('span');
     word.className = 'pf-wordmark';
-    word.innerHTML = 'Prompt<span class="pf-accent">Flow</span>';
+    // "Prompt" en Geist (sans), "Flow" en DM Serif Display (serif).
+    word.innerHTML = '<span class="pf-wm-prompt">Prompt</span><span class="pf-wm-flow">Flow</span>';
     brand.appendChild(logo);
     brand.appendChild(word);
 

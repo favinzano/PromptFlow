@@ -56,7 +56,7 @@ h1 {
   font-size: 20px;
   margin: 0;
   font-weight: normal;
-  letter-spacing: 0.5px;
+  letter-spacing: normal;
 }
 
 .content {
@@ -170,6 +170,20 @@ h1 {
 
 .brand-accent {
   color: var(--copper);
+}
+
+/* Wordmark: "Prompt" en Geist Regular (sans), "Flow" en DM Serif Display (serif). */
+h1 .wm-flow {
+  font-family: var(--font-heading);
+  color: var(--copper);
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+h1 .wm-prompt {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 19px; /* 1px menos que "Flow" */
+  letter-spacing: -0.04em;
 }
 
 /* ---------- Pestañas ---------- */
