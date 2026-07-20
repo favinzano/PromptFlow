@@ -7,14 +7,14 @@ import { ERR } from '../lib/messages.js';
 
 /**
  * @param {{ endpoint: string, authHeader: (apiKey: string) => Record<string,string>, extraHeaders?: Record<string,string> }} cfg
- * @returns {(text: string, opts: { apiKey: string, model: string }) => Promise<{ text: string }>}
+ * @returns {(text: string, opts: { apiKey: string, model: string, systemPrompt?: string }) => Promise<{ text: string }>}
  */
 export function makeOpenAICompatible({ endpoint, authHeader, extraHeaders = {} }) {
-  return async function enhance(text, { apiKey, model }) {
+  return async function enhance(text, { apiKey, model, systemPrompt }) {
     const body = {
       model,
       messages: [
-        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'system', content: systemPrompt || SYSTEM_PROMPT },
         { role: 'user', content: text }
       ],
       temperature: 0.7

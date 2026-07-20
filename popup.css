@@ -10,6 +10,11 @@
   /* Typography System */
   --font-heading: 'DM Serif Display', serif;
   --font-body: 'Geist', sans-serif;
+
+  /* Logo lockup — X = altura del isotipo */
+  --logo-x: 20px;
+  --logo-gap: calc(var(--logo-x) * 0.4);
+  --logo-clear-space: var(--logo-x);
 }
 
 body {
@@ -22,41 +27,44 @@ body {
   font-weight: 300;
 }
 
-.header {
+/* ---------- Header: brand row + lockup del logo ---------- */
+.brand-row {
+  height: 72px;
+  padding-inline: 24px; /* clear space izquierda = 24px (>1X) */
+  display: flex;
+  align-items: center;
   background-color: var(--deep-ink);
   color: var(--warm-bone);
-  padding: 20px;
-  display: flex;
-  align-items: center;
 }
 
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.logo-lockup {
+  display: inline-flex;
+  align-items: center; /* centro óptico del isotipo alineado con el wordmark */
+  gap: var(--logo-gap); /* 0.4X = 8px */
+  width: max-content;
+  white-space: nowrap;
 }
 
-.logo-mark {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  background-color: transparent; /* Fuerza a quitar el cuadrado blanco viejo */
+.logo-symbol {
+  width: var(--logo-x); /* 20px */
+  height: var(--logo-x);
+  flex: 0 0 var(--logo-x); /* no se deforma ni encoge */
+  display: inline-flex;
 }
-
-.logo-mark svg {
-  width: 24px !important;
-  height: 24px !important;
+.logo-symbol svg {
+  width: 100%;
+  height: 100%;
   display: block;
 }
 
-h1 {
-  font-family: var(--font-heading);
-  font-size: 20px;
-  margin: 0;
-  font-weight: normal;
-  letter-spacing: normal;
+.logo-wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  font-size: var(--logo-x); /* 20px; altura visual de letras ~70-75% de X */
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -0.015em; /* consolida el wordmark */
+  white-space: nowrap;
 }
 
 .content {
@@ -172,18 +180,23 @@ h1 {
   color: var(--copper);
 }
 
-/* Wordmark: "Prompt" en Geist Regular (sans), "Flow" en DM Serif Display (serif). */
-h1 .wm-flow {
+/* Wordmark: composición de marca — "Prompt" en Geist (sans, peso 500),
+   "Flow" en DM Serif Display (serif, cobre). Se comportan como una sola palabra. */
+.logo-wordmark .wm-prompt {
+  font-family: var(--font-body);
+  color: var(--warm-bone);
+}
+.logo-wordmark .wm-flow {
   font-family: var(--font-heading);
   color: var(--copper);
-  font-size: 20px;
-  letter-spacing: -0.01em;
+  font-weight: 400; /* DM Serif Display solo existe en 400; evita faux-bold */
 }
-h1 .wm-prompt {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 19px; /* 1px menos que "Flow" */
-  letter-spacing: -0.04em;
+
+/* Responsive: popups muy estrechos (<320px). Nunca por debajo de 18px, sin salto de línea. */
+@media (max-width: 320px) {
+  :root {
+    --logo-x: 18px;
+  }
 }
 
 /* ---------- Pestañas ---------- */

@@ -5,6 +5,7 @@
 
   PF.adapters.gemini = {
     id: 'gemini',
+    target: 'google', // optimizar para Gemini 3.1 Pro (mejores prácticas de Google)
     matches: (host) => host === 'gemini.google.com',
     // Gemini usa el editor Quill (.ql-editor) dentro de <rich-textarea>.
     getEditor: () =>

@@ -13,12 +13,12 @@ export const keyHint = {
   url: 'https://aistudio.google.com/apikey'
 };
 
-export async function enhance(text, { apiKey, model }) {
+export async function enhance(text, { apiKey, model, systemPrompt }) {
   const m = model || defaultModel;
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(m)}:generateContent`;
 
   const body = {
-    systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+    systemInstruction: { parts: [{ text: systemPrompt || SYSTEM_PROMPT }] },
     contents: [{ role: 'user', parts: [{ text }] }]
   };
 

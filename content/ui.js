@@ -23,11 +23,12 @@
   let currentPrompts = [];
   let onPickCb = null;
 
-  // Isotipo "La Incisión" (Felipe Avinzano), en negativo para el chip oscuro.
+  // Isotipo "La Incisión" (Felipe Avinzano), negativo para el chip oscuro.
+  // Mismo SVG que el popup: viewBox recortado (marca +65%) + stroke 18 para proporción consistente.
   const LOGO_SVG =
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" aria-hidden="true">' +
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="79 79 242 242" aria-hidden="true">' +
     '<rect x="105" y="120" width="160" height="160" fill="#F4F1EB" transform="rotate(-4 185 200)"/>' +
-    '<rect x="135" y="120" width="160" height="160" fill="none" stroke="#F4F1EB" stroke-width="12" transform="rotate(4 215 200)"/>' +
+    '<rect x="135" y="120" width="160" height="160" fill="none" stroke="#F4F1EB" stroke-width="18" transform="rotate(4 215 200)"/>' +
     '</svg>';
 
   function buildFab(handlers) {

@@ -13,11 +13,11 @@ export const keyHint = {
   url: 'https://console.anthropic.com/settings/keys'
 };
 
-export async function enhance(text, { apiKey, model }) {
+export async function enhance(text, { apiKey, model, systemPrompt }) {
   const body = {
     model: model || defaultModel,
     max_tokens: 1024,
-    system: SYSTEM_PROMPT,
+    system: systemPrompt || SYSTEM_PROMPT,
     messages: [{ role: 'user', content: text }]
   };
 
