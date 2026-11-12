@@ -28,6 +28,14 @@ content/    barra flotante + adaptadores por sitio
 popup/      biblioteca · mejorar · ajustes
 ```
 
+## Descarga
+
+La última versión siempre está en
+https://github.com/favinzano/PromptFlow/releases/latest/download/promptflow-chrome.zip
+
+Al publicar un release, adjunta el zip como `promptflow-vX.Y.Z.zip`. El workflow
+`stable-asset.yml` sube automáticamente una copia con el nombre fijo `promptflow-chrome.zip`.
+
 ## Instalación (desarrollo)
 
 1. Abre `chrome://extensions`.
