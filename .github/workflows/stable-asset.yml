@@ -1,0 +1,37 @@
+name: Stable download asset
+
+# When a release is published, upload a copy of the versioned zip under a
+# fixed name. The website can then link to
+# /releases/latest/download/promptflow-chrome.zip and always serve the newest build.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag to backfill (e.g. v1.0.0)"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  stable-asset:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TAG: ${{ github.event.release.tag_name || inputs.tag }}
+    steps:
+      - name: Copy versioned zip to stable name
+        run: |
+          set -euo pipefail
+          mkdir -p assets && cd assets
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern 'promptflow-v*.zip'
+          mapfile -t matches < <(ls promptflow-v*.zip)
+          if [ "${#matches[@]}" -ne 1 ]; then
+            echo "Expected exactly one promptflow-v*.zip in $TAG, found ${#matches[@]}." >&2
+            exit 1
+          fi
+          cp "${matches[0]}" promptflow-chrome.zip
+          gh release upload "$TAG" promptflow-chrome.zip --repo "$GITHUB_REPOSITORY" --clobber
